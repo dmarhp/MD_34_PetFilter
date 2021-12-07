@@ -8,7 +8,6 @@ export interface AnimalProps {
 }
 
 export const Animals = ({animals}: AnimalProps) => {
-
     if (animals.length === 0) {
         return (
             <h1>No animals added yet</h1>
@@ -23,8 +22,6 @@ export const Animals = ({animals}: AnimalProps) => {
                     animal={animal}
                 />
             ))}
-
         </div>
     )
-
 }

@@ -1,23 +1,14 @@
 @import "../../styles/helper";
 
 .addAnimal_form {
-  display: flex;
-  flex-direction: column;
   width: 30%;
   padding: 50px;
   margin: 20px auto;
 }
 
-
-
-
-
 .form_input_wrapper {
-  display: flex;
-  flex-direction: column;
   justify-content: left;
   margin-bottom: 10px;
-
 }
 
 .form_input_title {
@@ -30,7 +21,6 @@
   justify-content: left;
   align-items: center;
 }
-
 
 .form_input_species-button {
   border: none;
@@ -66,5 +56,17 @@
   &:focus {
     background-color: $col-main-0;
     outline: none;
+  }
+}
+
+.form_input_error {
+  background-color: $col-red-2;
+
+  &:hover {
+    background-color: $col-red-1;
+  }
+
+  &:focus {
+    background-color: $col-red-3;
   }
 }

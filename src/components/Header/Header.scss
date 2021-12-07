@@ -1,8 +1,94 @@
 @import "../../styles/helper";
 
-.header_wrapper{
+.header_wrapper {
   background-color: $col-black1;
   display: flex;
   justify-content: space-between;
   padding: 50px;
+  align-items: center;
+}
+
+.header_buttons {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.header_link {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: $col-main-1;
+  text-decoration: none;
+  color: $col-black1;
+  font-weight: 500;
+  border-radius: 2px;
+  transition: $transition;
+
+  &:hover {
+    background-color: $col-main-2;
+  }
+
+  &:active {
+    background-color: $col-main-3;
+    color: #FFFFFF;
+  }
+}
+
+.header_select {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    color: $col-main-1;
+  }
+
+  &:active, &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+.disabledInput {
+  font-size: 16px;
+  cursor: not-allowed;
+  font: $font;
+  font-style: italic;
+  width: 100%;
+
+  &:disabled {
+    background-color: #424242;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    padding: 5px;
+  }
+}
+
+.searchBar{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 50%;
+}
+
+.searchBtn {
+  font-size: 16px;
+  background-color: $col-main-1;
+  border: none;
+  padding: 5px 25px;
+  border-radius: 0 2px 2px 0;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $col-main-2;
+  }
+
+  &:active {
+    background-color: $col-main-3;
+  }
 }

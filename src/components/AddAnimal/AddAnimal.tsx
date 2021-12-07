@@ -2,10 +2,10 @@ import {useState} from "react";
 import {useAppDispatch} from "../../store/hooks";
 import "./AddAnimal.scss"
 import {addNewAnimal} from "../../store/animalSlice";
-import {Input} from "../inputs/Input";
 import {Select} from "../inputs/Select";
-import {functions} from "../../functions";
+import {validateAnimal, validateImgSrc, validateName} from "../../helpFunctions";
 import {ButtonSubmit} from "../ButtonSubmit/ButtonSubmit";
+import {Input} from "../inputs/Input";
 
 
 export const AddAnimal = () => {
@@ -16,29 +16,37 @@ export const AddAnimal = () => {
     const [addNew, setAddNew] = useState(false);
 
     const onAddBtnClick = () => {
+        let alertMessage = "success 😎";
         const newAnimal = {name: {en: name}, imgSrc: imgSrc, species: species}
 
-        if (functions(newAnimal)) {
+        if (validateAnimal(newAnimal)) {
             dispatch(addNewAnimal({name: {en: name}, imgSrc: imgSrc, species: species}));
             setName("");
             setImgSrc("");
             setSpecies("");
             setAddNew(false)
+        } else {
+            alertMessage = "Please make sure that all fields are filled in correctly"
         }
+        alert(alertMessage)
     }
 
     return (
-        <form className={"addAnimal_form"}>
+        <form className={"addAnimal_form flex-col"}>
             <Input
-                name={"Name:"}
+                title={"Name:"}
                 value={name}
-                toggleInput={(inputValue) => setName(inputValue)}
+                onInputChange={(value) => setName(value)}
+                validate={validateName}
+                message={"Animal name must be capitalized and contain at least 3 characters"}
             />
 
             <Input
-                name={"Image source:"}
+                title={"Image source:"}
                 value={imgSrc}
-                toggleInput={(inputValue) => setImgSrc(inputValue)}
+                onInputChange={(value) => setImgSrc(value)}
+                validate={validateImgSrc}
+                message={"This link is not valid!"}
             />
 
             <label>
@@ -51,17 +59,20 @@ export const AddAnimal = () => {
                             setAddNew(!addNew);
                         }}
                     >
-                        add new
+                        {
+                            addNew ? "choose" : "add new"
+                        }
                     </button>
                 </div>
 
                 {addNew
                     ? <Input
-                        name={""}
+                        title={""}
                         value={species}
-                        toggleInput={(inputValue) => setSpecies(inputValue)}
+                        onInputChange={(value => setSpecies(value))}
+                        validate={validateName}
+                        message={"Animal name must be capitalized and contain at least 3 characters"}
                     />
-
 
                     : <Select
                         value={species}

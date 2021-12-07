@@ -1,6 +1,6 @@
 @import "../../styles/helper";
 
-.gallery_wrapper{
+.gallery_wrapper {
   margin-bottom: 50px;
 }
 
@@ -27,7 +27,7 @@
 
   transition: all linear 0.3s;
 
-  &:hover{
+  &:hover {
     background-color: $col-black0;
   }
 

@@ -46,7 +46,6 @@ export const AnimalGallery = () => {
             <Animals
                 animals={filteredAnimals}
             />
-
         </div>
     )
 }
