@@ -6,10 +6,13 @@ import "./AnimalGallery.scss"
 import {useAppSelector} from "../../store/hooks";
 
 
-const getSpecies = (animals: AnimalType[]) => {
-    const spices = animals.map(({species}) => [...new Set(species)])
+export const getSpecies = (animals: AnimalType[]) => {
+    let spices = animals.map(({species}) => [...new Set(species)])
         .map(item => item.join(""));
     spices.unshift("all");
+    spices = spices.filter(function(item, pos) {
+        return spices.indexOf(item) == pos;
+    })
     return spices;
 }
 
@@ -46,7 +49,6 @@ export const AnimalGallery = () => {
             <Animals
                 animals={filteredAnimals}
             />
-
         </div>
     )
 }

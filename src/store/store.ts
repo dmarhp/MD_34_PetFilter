@@ -10,8 +10,6 @@ export const store = configureStore({
         animals: animalReducer,
         lang: langReducer,
         langList: langListReducer
-
-
     }
 })
 

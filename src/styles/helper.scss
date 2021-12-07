@@ -3,8 +3,6 @@ $col-main-1: #FFB300;
 $col-main-2: #FF8F00;
 $col-main-3: #FF6F00;
 
-
-
 $col-grey-0: #FFFFFF;
 $col-grey-1: #F5F5F5;
 $col-grey-2: #E0E0E0;
@@ -14,7 +12,15 @@ $col-black0: #212121;
 $col-black1: #121212;
 $col-black2: #000;
 
-
+$col-red-1: #FBE9E7;
+$col-red-2: #FFCCBC;
+$col-red-3: #FFAB91;
 
 $font: 'Roboto', sans-serif;
 $transition: all linear 0.3s;
+
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}

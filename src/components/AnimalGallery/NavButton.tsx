@@ -1,5 +1,6 @@
 import "./AnimalGallery.scss"
 
+
 interface ButtonProps {
     name: string;
     isSelected: boolean;

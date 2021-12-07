@@ -1,67 +1,95 @@
 import {useState} from "react";
-import {useAppDispatch} from "../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import "./AddAnimal.scss"
 import {addNewAnimal} from "../../store/animalSlice";
-import {Input} from "../inputs/Input";
 import {Select} from "../inputs/Select";
-import {functions} from "../../functions";
+import {validateAnimal, validateImgSrc, validateName} from "../../helpFunctions";
 import {ButtonSubmit} from "../ButtonSubmit/ButtonSubmit";
+import {Input} from "../inputs/Input";
+import {useNavigate} from "react-router-dom";
 
 
 export const AddAnimal = () => {
+    let speciesList = useAppSelector(({animals}) => animals.map(({species}) => [...new Set(species)])).map(item => item.join(""));
+    speciesList = speciesList.filter(function(item, pos) {
+        return speciesList.indexOf(item) == pos;
+    })
+    console.log(speciesList)
+    const speciesInitialValue = speciesList ? speciesList[0] : "";
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
     const [name, setName] = useState("");
     const [imgSrc, setImgSrc] = useState("");
-    const [species, setSpecies] = useState("");
+    const [species, setSpecies] = useState(speciesInitialValue);
     const [addNew, setAddNew] = useState(false);
 
     const onAddBtnClick = () => {
+        let alertMessage = "success 😎";
         const newAnimal = {name: {en: name}, imgSrc: imgSrc, species: species}
 
-        if (functions(newAnimal)) {
-            dispatch(addNewAnimal({name: {en: name}, imgSrc: imgSrc, species: species}));
+        if (validateAnimal(newAnimal)) {
             setName("");
             setImgSrc("");
             setSpecies("");
-            setAddNew(false)
+            setAddNew(false);
+            dispatch(addNewAnimal({name: {en: name}, imgSrc: imgSrc, species: species}));
+
+        } else {
+            alertMessage = "Please make sure that all fields are filled in correctly"
         }
+        alert(alertMessage)
+        navigate("../");
     }
 
+
+
     return (
-        <form className={"addAnimal_form"}>
+        <form className={"addAnimal_form flex-col"}>
             <Input
-                name={"Name:"}
+                title={"Name:"}
                 value={name}
-                toggleInput={(inputValue) => setName(inputValue)}
+                onInputChange={(value) => setName(value)}
+                validate={validateName}
+                message={"Animal name must be capitalized and contain at least 3 characters"}
             />
 
             <Input
-                name={"Image source:"}
+                title={"Image source:"}
                 value={imgSrc}
-                toggleInput={(inputValue) => setImgSrc(inputValue)}
+                onInputChange={(value) => setImgSrc(value)}
+                validate={validateImgSrc}
+                message={"This link is not valid!"}
             />
 
             <label>
                 <div className={"form_input_species_wrapper"}>
                     <span className={"form_input_title"}>Species</span>
-                    <button
-                        className={"form_input_title, form_input_species-button"}
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setAddNew(!addNew);
-                        }}
-                    >
-                        add new
-                    </button>
+
+                    {
+                        speciesList.length !== 0
+                        && <button
+                            className={"form_input_title, form_input_species-button"}
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setAddNew(!addNew);
+                            }}
+                        >
+                            {
+                                (addNew || speciesList.length === 0) ? "choose" : "add new"
+                            }
+                        </button>
+                    }
                 </div>
 
-                {addNew
+                {(addNew || speciesList.length === 0)
                     ? <Input
-                        name={""}
+                        title={""}
                         value={species}
-                        toggleInput={(inputValue) => setSpecies(inputValue)}
+                        onInputChange={(value => setSpecies(value))}
+                        validate={validateName}
+                        message={"Animal name must be capitalized and contain at least 3 characters"}
                     />
-
 
                     : <Select
                         value={species}

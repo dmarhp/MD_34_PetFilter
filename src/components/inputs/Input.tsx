@@ -1,23 +1,41 @@
+import {useState} from "react";
+
+
 interface InputProps {
-    name: string
-    value: string
-    toggleInput: (inputValue: string) => void;
+    title: string;
+    value: string;
+    onInputChange: (value: string, isValid: boolean) => void
+    validate: (name: string)=>boolean;
+    message: string
 }
 
-export const Input = ({name, value, toggleInput}: InputProps) => {
+export const Input = ({title, value, onInputChange, validate, message}: InputProps) => {
+    const [inputValue, setInputValue] = useState(value);
+    const [isValid, setIsValid] = useState(true)
+
+    const onChange = (value: string) => {
+        setIsValid(validate(value))
+        onInputChange(value, isValid)
+        setInputValue(value)
+    }
 
     return (
-        <label className={"form_input_wrapper"}>
-            <span className={"form_input_title"}>{name}</span>
+        <div className={"langForm_input flex-col"}>
+            <h3 className={"langForm_input-title"}>{title}</h3>
             <input
-                className={"form_input_input"}
+                className={`form_input_input ${isValid? "" : " form_input_error"}`}
                 type="text"
-                value={value}
-                onChange={(event) => toggleInput(event.target.value)}
+                value={inputValue}
+                onChange={event => {
+                    event.preventDefault();
+                    onChange(event.target.value);
+                }}
             />
-        </label>
-
+            <h3 className={"langForm_input-title langForm_error"}>
+                {isValid
+                    ? "\xa0"
+                    : message}
+            </h3>
+        </div>
     )
 }
-
-

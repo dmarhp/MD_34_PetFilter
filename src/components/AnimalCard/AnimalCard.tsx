@@ -1,20 +1,19 @@
 import {AnimalType} from "../../store/animalSlice";
 import "./AnimalCard.scss"
 import {useAppSelector} from "../../store/hooks";
-import {translateName} from "../../functions";
+import {translateName} from "../../helpFunctions";
+
 
 interface CardProps {
     animal: AnimalType
 }
 
-
 export const AnimalCard = ({animal}: CardProps) => {
     const {imgSrc, species} = animal;
-
     const lang = useAppSelector(state => state.lang)
 
     return (
-        <div className={"card_wrapper"}>
+        <div className={"card_wrapper flex-col"}>
             <div className={"card_image_wrapper"}>
                 <img className={"card_image"} src={imgSrc} alt=""/>
             </div>
