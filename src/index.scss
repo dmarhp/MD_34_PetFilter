@@ -1,0 +1,22 @@
+@import "./styles/reset";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@import "./styles/helper";
+
+
+body {
+  background-color: $col-black2;
+  color: #FFFFFF;
+  width: 100%;
+  margin: 0;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

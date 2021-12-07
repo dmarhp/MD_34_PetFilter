@@ -1,0 +1,36 @@
+@import "../../styles/helper";
+
+.langForm_wrapper {
+  background-color: $col-black0;
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.langForm {
+  display: flex;
+  background-color: $col-black0;
+  margin: 10px
+}
+
+.langForm_image {
+  width: 30%;
+}
+
+.langForm_lang_wrapper {
+  padding: 10px 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.langForm_input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.langForm_input-title {
+  text-align: left;
+  font-size: 16px;
+}

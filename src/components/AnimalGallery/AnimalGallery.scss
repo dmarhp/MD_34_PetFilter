@@ -1,0 +1,45 @@
+@import "../../styles/helper";
+
+.gallery_wrapper{
+  margin-bottom: 50px;
+}
+
+.nabBar_wrapper {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nabBar_button {
+  font-family: $font;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+
+  padding: 10px 20px;
+  background-color: $col-black1;
+  cursor: pointer;
+  color: #FFFFFF;
+
+  transition: all linear 0.3s;
+
+  &:hover{
+    background-color: $col-black0;
+  }
+
+  &.active {
+    background-color: $col-main-2;
+  }
+}
+
+.animals {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+

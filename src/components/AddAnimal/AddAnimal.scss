@@ -1,0 +1,70 @@
+@import "../../styles/helper";
+
+.addAnimal_form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 50px;
+  margin: 20px auto;
+}
+
+
+
+
+
+.form_input_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-bottom: 10px;
+
+}
+
+.form_input_title {
+  text-align: left;
+  font-size: 12px;
+}
+
+.form_input_species_wrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+
+.form_input_species-button {
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  font-family: $font;
+  text-decoration: underline;
+  cursor: pointer;
+  color: $col-main-1;
+}
+
+.form_input_select {
+  border: none;
+  border-radius: 2px;
+  background-color: #F8F9F9;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+
+.form_input_input {
+  border: none;
+  border-radius: 2px;
+  background-color: $col-grey-1;
+  padding: 5px;
+  transition: all linear 0.3s;
+
+  &:hover {
+    background-color: $col-grey-3;
+  }
+
+  &:focus {
+    background-color: $col-main-0;
+    outline: none;
+  }
+}

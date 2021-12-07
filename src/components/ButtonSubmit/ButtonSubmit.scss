@@ -1,0 +1,25 @@
+@import "../../styles/helper";
+
+
+.btn_submit {
+  width: 30%;
+  margin: 0 auto;
+  border: none;
+  padding: 5px;
+
+  background-color: $col-main-1;
+  font-family: $font;
+  transition: $transition;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $col-main-2;
+    color: white;
+  }
+
+  &:active {
+    background-color: $col-main-3;
+    color: white;
+
+  }
+}
