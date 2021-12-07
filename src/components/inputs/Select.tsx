@@ -1,4 +1,6 @@
 import {useAppSelector} from "../../store/hooks";
+import uniqid from "uniqid";
+import {getSpecies} from "../AnimalGallery/AnimalGallery";
 
 interface SelectProps {
     value: string;
@@ -6,7 +8,9 @@ interface SelectProps {
 }
 
 export const Select = ({value, toggleValue}: SelectProps) => {
-    const species = useAppSelector(({animals}) => animals.map(({species}) => [...new Set(species)])).map(item => item.join(""));
+    const animals = useAppSelector(state => state.animals);
+    const species = getSpecies(animals);
+    species.shift();
 
     return (
         <select
@@ -17,7 +21,7 @@ export const Select = ({value, toggleValue}: SelectProps) => {
             {species.map(item => (
                 <option
                     value={item}
-                    key={item + "_species"}
+                    key={uniqid()}
                 >
                     {item}
                 </option>
